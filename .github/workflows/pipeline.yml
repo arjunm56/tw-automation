@@ -1,4 +1,4 @@
-name: Build and Publish
+name: MediaWiki Build and Publish
 on:
  push:
    branches: [ main ]
