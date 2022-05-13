@@ -17,9 +17,9 @@ RUN dnf update -y && \
     dnf install -y mariadb-server.rpm mariadb-client.rpm mariadb-common.rpm mariadb-shared.rpm galera.rpm boost.rpm --setopt=tsflags=nodocs && \
     dnf clean all && \
     rm -rf /var/cache/dnf && \
-    rm -f mariadb-server.rpm mariadb-client.rpm mariadb-common.rpm mariadb-shared.rpm galera.rpm boost.rpm RPM-GPG-KEY-MariaDB RPM-GPG-KEY-CentOS-Official && \
-    systemctl start mariadb && \
-    mysql_secure_installation && \
-    systemctl enable mariadb
+    rm -f mariadb-server.rpm mariadb-client.rpm mariadb-common.rpm mariadb-shared.rpm galera.rpm boost.rpm RPM-GPG-KEY-MariaDB RPM-GPG-KEY-CentOS-Official
 
 USER mysql
+
+EXPOSE 3306
+CMD ["mysqld","--user=root"]
