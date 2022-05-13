@@ -13,9 +13,8 @@ RUN rpm --import RPM-GPG-KEY-MariaDB
 
 # import GPG keys, update, install dependencies, and clean
 # remove rpms/keys and allow exec permissions on entrypoint
-RUN pwd
 RUN dnf update -y && \
-RUN dnf install -y mariadb-server.rpm mariadb-client.rpm mariadb-common.rpm mariadb-shared.rpm galera.rpm boost.rpm --setopt=tsflags=nodocs && \
+    dnf install -y mariadb-server.rpm mariadb-client.rpm mariadb-common.rpm mariadb-shared.rpm galera.rpm boost.rpm --setopt=tsflags=nodocs && \
     dnf clean all && \
     rm -rf /var/cache/dnf && \
     rm -f mariadb-server.rpm mariadb-client.rpm mariadb-common.rpm mariadb-shared.rpm galera.rpm boost.rpm RPM-GPG-KEY-MariaDB RPM-GPG-KEY-CentOS-Official && \
