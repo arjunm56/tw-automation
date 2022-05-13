@@ -13,7 +13,7 @@ COPY bin/mariadb-server.rpm bin/mariadb-client.rpm bin/mariadb-common.rpm bin/ma
 # remove rpms/keys and allow exec permissions on entrypoint
 RUN rpm --import RPM-GPG-KEY-MariaDB && \
     dnf update -y && \
-    dnf install -y mariadb-server.rpm mariadb-client.rpm mariadb-common.rpm mariadb-shared.rpm galera.rpm boost.rpm --setopt=tsflags=nodocs && \
+    dnf install -y bin/mariadb-server.rpm bin/mariadb-client.rpm bin/mariadb-common.rpm bin/mariadb-shared.rpm bin/galera.rpm bin/boost.rpm --setopt=tsflags=nodocs && \
     dnf clean all && \
     rm -rf /var/cache/dnf && \
     rm -f mariadb-server.rpm mariadb-client.rpm mariadb-common.rpm mariadb-shared.rpm galera.rpm boost.rpm RPM-GPG-KEY-MariaDB RPM-GPG-KEY-CentOS-Official && \
