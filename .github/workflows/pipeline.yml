@@ -48,7 +48,7 @@ jobs:
  helm-lint:
    name: Helm lint and release
    runs-on: ubuntu-latest
-   needs: build
+   needs: build-mediawiki-image
    steps:
      - uses: actions/checkout@v2
      - name: Helm Lint
