@@ -24,6 +24,6 @@ RUN tar -zxf /home/mediawiki/mediawiki-1.37.2.tar.gz && \
     
 COPY httpd-foreground /usr/local/bin/
 COPY httpd.conf /etc/httpd/conf/httpd.conf
-COPY index.html /var/www/
+
 EXPOSE 80
 CMD ["httpd-foreground"]
