@@ -40,7 +40,6 @@ jobs:
        name: Build and push
        uses: docker/build-push-action@v3
        with:
-         context: ./mediawiki
          file: ./mediawiki/Dockerfile
          push: true
          tags: arjunm56i/mediawiki-arjun:v1
