@@ -10,6 +10,7 @@ RUN groupadd -g 27 -r mediawiki && \
     dnf module -y enable php:7.4 && \
     dnf install -y httpd php php-mysqlnd php-gd php-xml php-mbstring php-json php-intl php-apcu && \
     dnf clean -y all && \
+    mkdir -p /run/php-fpm/ && \ 
     php-fpm
 
 WORKDIR /home/mediawiki
