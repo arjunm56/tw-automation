@@ -3,7 +3,7 @@ on:
  push:
    branches: [ main ]
 jobs:
- build:
+ build-mariadb-image:
    name: 'Docker: Build and upload artifacts'
    runs-on: ubuntu-latest
    steps:
@@ -20,8 +20,31 @@ jobs:
        name: Build and push
        uses: docker/build-push-action@v3
        with:
+         file: ./Dockerfile.mariadb
          push: true
-         tags: arjunm56i/mediawiki-1:latest
+         tags: arjunm56i/mariadb-server-arjun:v1
+ build-mediawiki-image:
+   name: 'Docker: Build and upload artifacts'
+   runs-on: ubuntu-latest
+   steps:
+     -
+       name: Set up Docker Buildx
+       uses: docker/setup-buildx-action@v2
+     -
+       name: Login to DockerHub
+       uses: docker/login-action@v2
+       with:
+         username: ${{ secrets.DOCKERHUB_USERNAME }}
+         password: ${{ secrets.DOCKERHUB_TOKEN }}
+     -
+       name: Build and push
+       uses: docker/build-push-action@v3
+       with:
+         context: ./mediawiki
+         file: ./mediawiki/Dockerfile
+         push: true
+         tags: arjunm56i/mediawiki-arjun:v1
+
  helm-lint:
    name: Helm lint and release
    runs-on: ubuntu-latest

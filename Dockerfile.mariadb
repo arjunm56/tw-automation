@@ -1,0 +1,45 @@
+ARG BASE_IMAGE=redhat/ubi8-init
+ARG BASE_TAG=8.5
+
+FROM ${BASE_IMAGE}:${BASE_TAG}
+
+ENV MARIADB_MAJOR 10.4
+ENV MARIADB_VERSION 10.4.22
+
+# copy dependencies, GPG key
+COPY *.rpm /
+COPY RPM-GPG-KEY-MariaDB /
+COPY --chown=27:27 scripts/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY --chown=27:27 scripts/healthcheck.sh /usr/local/bin/healthcheck.sh
+
+RUN groupadd -g 27 -r mysql && \
+    useradd -u 27 -r -g mysql mysql && \
+    rpm --import RPM-GPG-KEY-MariaDB
+
+
+# import GPG keys, update, install dependencies, and clean
+# remove rpms/keys and allow exec permissions on entrypoint
+RUN dnf update -y && \
+    dnf install -y mariadb-server.rpm mariadb-client.rpm mariadb-common.rpm mariadb-shared.rpm galera.rpm boost.rpm --setopt=tsflags=nodocs && \
+    dnf clean all && \
+    rm -rf /var/cache/dnf && \
+    rm -f mariadb-server.rpm mariadb-client.rpm mariadb-common.rpm mariadb-shared.rpm galera.rpm boost.rpm RPM-GPG-KEY-MariaDB RPM-GPG-KEY-CentOS-Official && \
+    chmod +x /usr/local/bin/docker-entrypoint.sh && \
+    chmod +x /usr/local/bin/healthcheck.sh && \
+    rm -rf /var/lib/mysql && \
+	mkdir -p /var/lib/mysql /var/run/mysqld && \
+	chown -R mysql:mysql /var/lib/mysql /var/run/mysqld && \
+    mkdir /docker-entrypoint-initdb.d && \
+    chown mysql:mysql /docker-entrypoint-initdb.d && \
+    find / -perm /6000 -type f -exec chmod a-s {} \; || true
+
+COPY config/my.cnf /etc/my.cnf
+COPY config/server.cnf /etc/my.cnf.d/server.cnf
+
+USER mysql
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+HEALTHCHECK CMD /usr/local/bin/healthcheck.sh
+EXPOSE 3306
+
+CMD ["mysqld"]
