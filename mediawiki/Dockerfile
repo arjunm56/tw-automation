@@ -22,8 +22,8 @@ WORKDIR /var/www
 RUN tar -zxf /home/mediawiki/mediawiki-1.37.2.tar.gz && \
     ln -s mediawiki-1.37.2/ mediawiki
     
-COPY httpd-foreground /usr/local/bin/
-COPY httpd.conf /etc/httpd/conf/httpd.conf
+COPY mediawiki/httpd-foreground /usr/local/bin/
+COPY mediawiki/httpd.conf /etc/httpd/conf/httpd.conf
 
 EXPOSE 80
 CMD ["httpd-foreground"]
