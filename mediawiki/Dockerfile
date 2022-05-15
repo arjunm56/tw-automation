@@ -27,4 +27,4 @@ COPY mediawiki/httpd-foreground /usr/local/bin/
 COPY mediawiki/httpd.conf /etc/httpd/conf/httpd.conf
 
 EXPOSE 80
-CMD ["httpd-foreground"]
+CMD ["httpd","-DFOREGROUND"]
