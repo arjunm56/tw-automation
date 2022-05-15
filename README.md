@@ -19,6 +19,10 @@ elb-123                           <none>   *                 34.111.21.104
 
 Step 4: Finish the steps in the Mediawiki. Provide the MariaDB IP in DB hostname field.(Pick a MariaDB IP from GitHub Actions --> Helm mediawiki release workflow --> Deploy Step --> End of the log as showin above.)
 
+
+![Screenshot](https://user-images.githubusercontent.com/65848674/168481954-09a23240-16e8-4edb-9176-cf2690cb90b3.JPG)
+
+
 Troubleshooting steps:
 
 1. Ingress might take time to come up, verify backend services if healthy
@@ -27,7 +31,3 @@ Troubleshooting steps:
 
 3. Sometimes, mediawiki httpd service might be down. Restart php-fpm, httpd service to solve the issue.
 
-
-![Screenshot](https://user-images.githubusercontent.com/65848674/168481954-09a23240-16e8-4edb-9176-cf2690cb90b3.JPG)
-
-..

@@ -66,8 +66,9 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
+    - host: *
       paths: 
-      - pathType: ImplementationSpecific
+      - pathType: Prefix
         path: /mediawiki/*
   tls: []
   #  - secretName: chart-example-tls
@@ -81,7 +82,7 @@ resources:
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   limits:
    cpu: 100m
-   memory: 250Mi
+   memory: Mi
   requests:
    cpu: 50m
    memory: 128Mi
