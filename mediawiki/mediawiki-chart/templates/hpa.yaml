@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "mediawiki-chart-chart.fullname" . }}
+  name: {{ include "mediawiki-chart.fullname" . }}
   labels:
-    {{- include "mediawiki-chart-chart.labels" . | nindent 4 }}
+    {{- include "mediawiki-chart.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "mediawiki-chart-chart.fullname" . }}
+    name: {{ include "mediawiki-chart.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
