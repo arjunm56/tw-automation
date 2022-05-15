@@ -7,3 +7,4 @@ Step 3: Access the Ingress/URL provided by the cluster and access it.
 Step 4: Finish the steps in the Mediawiki (Provide the MariaDB service IP in DB hostname)
 
 
+![Screenshot](https://user-images.githubusercontent.com/65848674/168481954-09a23240-16e8-4edb-9176-cf2690cb90b3.JPG)
