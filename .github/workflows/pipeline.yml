@@ -72,5 +72,5 @@ jobs:
           --zone $GKE_ZONE \
           --project $GKE_PROJECT
         helm upgrade --install mariadb-server-arjun tw-automation-chart
-        kubectl rollout status deployment/$DEPLOYMENT_NAME
+        kubectl rollout status deployment/mariadb-server-arjun-tw-automation-chart
         kubectl get services -o wide

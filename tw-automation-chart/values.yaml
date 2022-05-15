@@ -77,3 +77,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+env:
+  MYSQL_ROOT_PASSWORD: root
+  MYSQL_DATABASE: db 
+  MYSQL_USER: mysql 
+  MYSQL_PASSWORD: password
