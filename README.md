@@ -15,7 +15,7 @@ Step 3: Access the Ingress/URL http://<ADDRESS>/ (Pick a ADDRESS from GitHub Act
 --> Helm mediawiki release workflow --> Deploy Step --> End of the log as showin below.)
 
     NAME                              CLASS    HOSTS             ADDRESS          
-elb-123                           <none>   *                 34.111.21.104 
+elb-123                           <none>   *                        <>
 
 Step 4: Finish the steps in the Mediawiki. Provide the MariaDB IP in DB hostname field.(Pick a MariaDB IP from GitHub Actions --> Helm mediawiki release workflow --> Deploy Step --> End of the log as showin above.)
 
