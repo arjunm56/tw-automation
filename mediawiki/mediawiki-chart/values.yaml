@@ -66,10 +66,9 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: mediawiki-arjun
       paths: 
       - pathType: ImplementationSpecific
-        path: "/*"
+        path: /mediawiki/*
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

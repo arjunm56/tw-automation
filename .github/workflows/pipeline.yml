@@ -54,7 +54,7 @@ jobs:
          tags: arjunm56i/mediawiki-arjun:v1
 
  helm-mariadb-server-deploy:
-   name: Helm lint and release
+   name: Helm MariaDB release
    runs-on: ubuntu-latest
    needs: build-mariadb-image
    steps: 
@@ -99,4 +99,5 @@ jobs:
            --set env.MEDIAWIKI_DB_USER=${{ secrets.MEDIAWIKI_DB_USER }} --set env.MEDIAWIKI_DB_PASSWORD=${{ secrets.MEDIAWIKI_DB_PASSWORD }} \
            mediawiki-arjun ./mediawiki/mediawiki-chart
          kubectl rollout status deployment/mediawiki-arjun-mediawiki-chart
-         kubectl get services -o wide
+         kubectl get ingress
+         kubectl get services
