@@ -33,6 +33,27 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:          
+          - name: "MYSQL_ROOT_PASSWORD"
+            valueFrom:
+              secretKeyRef:
+                key:  MYSQL_ROOT_PASSWORD
+                name: {{ .Release.Name }}-auth
+          - name: "MYSQL_DATABASE"
+            valueFrom:
+              secretKeyRef:
+                key:  MYSQL_DATABASE
+                name: {{ .Release.Name }}-auth
+          - name: "MYSQL_USER"
+            valueFrom:
+              secretKeyRef:
+                key:  MYSQL_USER
+                name: {{ .Release.Name }}-auth  
+          - name: "MYSQL_PASSWORD"
+            valueFrom:
+              secretKeyRef:
+                key:  MYSQL_PASSWORD
+                name: {{ .Release.Name }}-auth          
           ports:
             - name: http
               containerPort: 80
