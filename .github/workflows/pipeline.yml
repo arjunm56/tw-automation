@@ -71,8 +71,8 @@ jobs:
         gcloud container clusters get-credentials $GKE_CLUSTER \
           --zone $GKE_ZONE \
           --project $GKE_PROJECT
-        helm upgrade --install --set env.MYSQL_ROOT_PASSWORD=root --set env.MYSQL_DATABASE=db \
-          --set env.MYSQL_USER=mysql --set env.MYSQL_PASSWORD=password \
+        helm upgrade --install --set env.MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }} --set env.MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
+          --set env.MYSQL_USER=${{ secrets.MYSQL_USER }} --set env.MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
           mariadb-server-arjun tw-automation-chart
         kubectl rollout status deployment/mariadb-server-arjun-tw-automation-chart
         kubectl get services -o wide

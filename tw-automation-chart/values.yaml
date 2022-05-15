@@ -10,6 +10,23 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v1"
 
+livenessProbe:
+  exec:
+    command: ["sh", "-c", "exec mysqladmin status -uroot -p$MYSQL_ROOT_PASSWORD"]
+  initialDelaySeconds: 120
+  periodSeconds: 10
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 3
+readinessProbe:
+  exec:
+    command: ["sh", "-c", "exec mysqladmin status -uroot -p$MYSQL_ROOT_PASSWORD"]
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 3
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -80,7 +97,7 @@ tolerations: []
 affinity: {}
 
 env:
-  MYSQL_ROOT_PASSWORD: root
-  MYSQL_DATABASE: db 
-  MYSQL_USER: mysql 
-  MYSQL_PASSWORD: password
+  MYSQL_ROOT_PASSWORD: sample
+  MYSQL_DATABASE: sample
+  MYSQL_USER: sample
+  MYSQL_PASSWORD: sample
