@@ -77,7 +77,7 @@ jobs:
         kubectl rollout status deployment/mariadb-server-arjun-tw-automation-chart
         kubectl get services -o wide
 
-helm-mediawiki-app-deploy:
+ helm-mediawiki-app-deploy:
    name: Helm mediawiki release
    runs-on: ubuntu-latest
    needs: helm-mariadb-server-deploy
@@ -92,11 +92,11 @@ helm-mediawiki-app-deploy:
      # Deploy the Docker image to the GKE cluster
      - name: Deploy
        run: |
-        gcloud container clusters get-credentials $GKE_CLUSTER \
-          --zone $GKE_ZONE \
-          --project $GKE_PROJECT
-        helm upgrade --install --set env.MEDIAWIKI_DB_NAME=${{ secrets.MEDIAWIKI_DB_NAME }} --set env.MEDIAWIKI_DB_HOST=${{ secrets.MEDIAWIKI_DB_HOST }} \
-          --set env.MEDIAWIKI_DB_USER=${{ secrets.MEDIAWIKI_DB_USER }} --set env.MEDIAWIKI_DB_PASSWORD=${{ secrets.MEDIAWIKI_DB_PASSWORD }} \
-          mediawiki-arjun mediawiki-chart
-        kubectl rollout status deployment/mediawiki-arjun-mediawiki-chart
-        kubectl get services -o wide
+         gcloud container clusters get-credentials $GKE_CLUSTER \
+           --zone $GKE_ZONE \
+           --project $GKE_PROJECT
+         helm upgrade --install --set env.MEDIAWIKI_DB_NAME=${{ secrets.MEDIAWIKI_DB_NAME }} --set env.MEDIAWIKI_DB_HOST=${{ secrets.MEDIAWIKI_DB_HOST }} \
+           --set env.MEDIAWIKI_DB_USER=${{ secrets.MEDIAWIKI_DB_USER }} --set env.MEDIAWIKI_DB_PASSWORD=${{ secrets.MEDIAWIKI_DB_PASSWORD }} \
+           mediawiki-arjun mediawiki-chart
+         kubectl rollout status deployment/mediawiki-arjun-mediawiki-chart
+         kubectl get services -o wide
