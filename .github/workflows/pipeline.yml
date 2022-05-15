@@ -69,7 +69,7 @@ jobs:
         gcloud auth configure-docker
      # Setup .env file
      - name: Setup .env file
-        run: |
+       run: |
           echo GIPHY_API_KEY=${{ secrets.GIPHY_API }} > cmd/.env      
      # Deploy the Docker image to the GKE cluster
      - name: Deploy
