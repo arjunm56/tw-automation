@@ -67,7 +67,7 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: mediawiki-arjun.local
-      paths: []
+      paths: /
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
