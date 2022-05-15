@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "tw-automation-chart.fullname" . }}-test-connection"
+  name: "{{ include "mediawiki-chart-chart.fullname" . }}-test-connection"
   labels:
-    {{- include "tw-automation-chart.labels" . | nindent 4 }}
+    {{- include "mediawiki-chart-chart.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test
 spec:
@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "tw-automation-chart.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "mediawiki-chart-chart.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never
