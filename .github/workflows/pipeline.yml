@@ -13,7 +13,7 @@ env:
 
 jobs:
  build-mariadb-image:
-   name: 'Docker: Build and upload artifacts'
+   name: 'Docker: Build and upload mariadb artifacts'
    runs-on: ubuntu-latest
    steps:
      -
@@ -33,7 +33,7 @@ jobs:
          push: true
          tags: arjunm56i/mariadb-server-arjun:v1
  build-mediawiki-image:
-   name: 'Docker: Build and upload artifacts'
+   name: 'Docker: Build and upload mediawiki artifacts'
    runs-on: ubuntu-latest
    steps:
      -
@@ -97,6 +97,6 @@ jobs:
            --project $GKE_PROJECT
          helm upgrade --install --set env.MEDIAWIKI_DB_NAME=${{ secrets.MEDIAWIKI_DB_NAME }} --set env.MEDIAWIKI_DB_HOST=${{ secrets.MEDIAWIKI_DB_HOST }} \
            --set env.MEDIAWIKI_DB_USER=${{ secrets.MEDIAWIKI_DB_USER }} --set env.MEDIAWIKI_DB_PASSWORD=${{ secrets.MEDIAWIKI_DB_PASSWORD }} \
-           mediawiki-arjun mediawiki-chart
+           mediawiki-arjun ./mediawiki/mediawiki-chart
          kubectl rollout status deployment/mediawiki-arjun-mediawiki-chart
          kubectl get services -o wide
