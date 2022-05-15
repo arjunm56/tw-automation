@@ -11,11 +11,10 @@ Step 1: Add/Push to main branch. For ex: edit readme and push.
 
 Step 2: GitHub Workflow Actions trigger the jobs that has Build, Publish and Deploy jobs for MariaDB server and Mediawiki application with seperate Dockerfiles. 
 
-Step 3: Access the Ingress/URL http://<ADDRESS>/ (Pick a ADDRESS from GitHub Actions 
+Step 3: Access the Ingress/URL http://ADDRESS (Pick a ADDRESS from GitHub Actions 
 --> Helm mediawiki release workflow --> Deploy Step --> End of the log as showin below.)
 
     NAME                              CLASS    HOSTS             ADDRESS          
-elb-123                           <none>   *                        <>
 
 Step 4: Finish the steps in the Mediawiki. Provide the MariaDB IP in DB hostname field.(Pick a MariaDB IP from GitHub Actions --> Helm mediawiki release workflow --> Deploy Step --> End of the log as showin above.)
 
