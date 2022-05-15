@@ -1,5 +1,5 @@
 
-CI/CD Pipeline using GitHub, Helm, GCP GKE
+CI/CD Pipeline using GitHub Workflow Actions, Helm, GCP GKE
 
 Step 1: Add/Push to main branch
 Step 2: GitHub Workflow Actions trigger the jobs that has Build, Publish and Deploy steps for MariaDB server and Mediawiki with respective Dockerfiles.
