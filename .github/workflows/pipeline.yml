@@ -7,7 +7,7 @@ env:
   GKE_PROJECT: academic-matter-176711
   GKE_EMAIL: ${{ secrets.GKE_EMAIL }}
   GITHUB_SHA: ${{ github.sha }}
-  GKE_ZONE: ap-south1-a
+  GKE_ZONE: asia-south1
   GKE_CLUSTER: gke-arjun-cluster
   DEPLOYMENT_NAME: arjun-mediawiki-deployment
 
